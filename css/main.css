@@ -1,6 +1,7 @@
 *{
     padding: 0;
     margin: 0;
+    font-family: sans-serif, Arial, Helvetica;
 }
 header{
     display: flex;
@@ -13,4 +14,37 @@ nav{
     height: 8vh;
     position: sticky;
     top: 8vh;
+    padding: 25px  0 25px 0;
+}
+
+#logo{
+    height: 100px;
+    width: 50px;
+}
+
+#logosheet{
+    justify-content: center;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+#rijks{
+    font-size: 14px;
+}
+
+li{
+    list-style: none;
+    color: white;
+}
+
+#navigatie{
+    display: flex;
+    text-align: center;
+}
+
+#home, #navbar{
+    display: flex;
+    
 }
