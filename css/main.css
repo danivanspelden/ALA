@@ -36,15 +36,30 @@ nav{
 
 li{
     list-style: none;
-    color: white;
+    color: #ffffff;
+    font-size: 22px;
+    text-decoration: none;
 }
 
 #navigatie{
-    display: flex;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
-#home, #navbar{
+#home{
     display: flex;
-    
+    align-items: start;
+    font-size: 22px;
+    justify-content: center;
+}
+
+#navbar{
+    display: flex;
+    justify-content: center;
+    column-gap: 8vh;
+}
+
+.navi{
+    text-decoration: none;
+    color: white;
 }
