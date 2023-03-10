@@ -1,0 +1,16 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+header{
+    display: flex;
+    flex-direction: column;
+    height: 16vh;
+}
+nav{
+    background-color: #01689B;
+    width: 100vw;
+    height: 8vh;
+    position: sticky;
+    top: 8vh;
+}
