@@ -37,7 +37,7 @@ nav{
 li{
     list-style: none;
     color: #ffffff;
-    font-size: 22px;
+    font-size: 21px;
     text-decoration: none;
 }
 
@@ -49,7 +49,7 @@ li{
 #home{
     display: flex;
     align-items: start;
-    font-size: 22px;
+    font-size: 21px;
     justify-content: center;
 }
 
