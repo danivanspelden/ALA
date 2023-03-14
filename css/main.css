@@ -8,7 +8,6 @@ body{
       font-family: sans-serif, Arial, Helvetica;
   }
   
-  
   nav{
       width: 100vw;
       position: sticky;
@@ -16,23 +15,10 @@ body{
       padding: 5px  0 5px 0;
   }
   
-  
   #logo{
       height: 100px;
       width: 50px;
     
-  }
-  
-  #logosheet{
-      justify-content: center;
-      padding-bottom: 20px;
-      display: flex;
-      align-items: center;
-      column-gap: 10px;
-  }
-  
-  #rijks{
-      font-size: 14px;
   }
   
   li{
@@ -40,18 +26,6 @@ body{
       color: #ffffff;
       font-size: 21px;
       text-decoration: none;
-  }
-  
-  #navigatie{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-  }
-  
-  #home{
-      display: flex;
-      align-items: start;
-      font-size: 21px;
-      justify-content: center;
   }
   
   #navbar{
