@@ -1,5 +1,6 @@
 body{
     background: #1A1E23;
+    overflow: hidden;
   }
   
   *{
@@ -111,8 +112,9 @@ body{
   .modal-content {
     margin: 15%;
     padding: 20px;
-    display:flex;
+    display: flex;
     justify-content: center;
+    /* position: fixed;                                                                              */
   }
   
   .login {
@@ -209,7 +211,7 @@ body{
   .enter:hover {
     background-color:#5e6681;
     color: #ffeba7;
-  box-shadow: 0 8px 24px 0 rgb(255 235 167 / 20%);
+    box-shadow: 0 8px 24px 0 rgb(255 235 167 / 20%);
   }
   
   .close{
