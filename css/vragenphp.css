@@ -226,12 +226,27 @@ body{
     color: black;
     text-decoration: none;
   }
+  
+  #vragen{
+    justify-content: center;
+    display: flex;
+  }
 
-  #ongeldig{
+  #janee{
     color: white;
+    text-decoration: none;
     display: flex;
     justify-content: center;
     position: relative;
-    top: 30vh;
+    top: 50vh;
     z-index: -1;
-  }
+}
+
+#vraag{
+  color: white;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 30vh;
+  z-index: -1;
+}

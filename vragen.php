@@ -1,56 +1,4 @@
-<?php include 'C:/xampp/htdocs/ALA/connection.php'; 
-
-if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
-    $username = $_POST['gebruikersnaam'];
-    $password = $_POST['wachtwoord'];
-
-    $stmt = $conn->prepare("SELECT * FROM gebruikers WHERE username = :username AND passwords = :passwords");
-    $stmt->bindParam(':username', $username);
-    $stmt->bindParam(':passwords', $password);
-    $stmt->execute();
-    $user = $stmt->fetch();
-
-   
-    if ($user) {
-     
-      session_start();
-      $_SESSION["username"] = $user['username'];
-
-     
-      header("Location: index.php?test=1");
-      exit;
-  } else {
-
-    $error = "<p id='ongeldig'>Ongeldige gebruikersnaam en/of wachtwoord.</p>";
-
-    header("Location: inlog.html");
-      exit;
-
-      // echo "<p id='ongeldig'>Ongeldige gebruikersnaam en/of wachtwoord.</p>";
-  }
-// } else {
-//     // Als de gebruikersnaam en/of het wachtwoord niet zijn ingevuld, toon dan een melding
-//     echo "Vul a.u.b. uw gebruikersnaam en wachtwoord in.";
-// }
-}
-
-try {
-  $stmt = $conn->prepare("INSERT INTO gebruikers (username, passwords) VALUES (:username, :passwords)");
-  $stmt->bindParam(':username', $username);
-  $stmt->bindParam(':passwords', $password);
-
-  $username = "admin";
-  $password = "admin";
-  $stmt->execute();
-
-} catch(PDOException $e) {
-  
-  if ($e->getCode() != 23000) {
-      throw $e;
-  }
-}
-
-?>
+<?php include 'C:/xampp/htdocs/ALA/connection.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -102,7 +50,6 @@ try {
       </article>
     </nav>
   </header>
-  
 </body>
 </html>
 
@@ -110,17 +57,10 @@ try {
 
 <?php
 
-if (!isset($_GET['test'])) {
-  $test = 1;
-  $query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '$test'";
-} else {
-  $test = $_GET['test'];
-  $query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '$test'";
-}
+$test = $_GET['test'];
 
 $query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '$test'";
 
-// $node_1 = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '1'"
 
 $result = $conn->query($query);
 
@@ -133,7 +73,7 @@ if ($result->rowCount() > 0) {
     ?> 
 
 
-<a id='janee' href="index.php?test=<?php echo $row['end_node'] ?>"> <?php echo $row['answer'] ?> </a>
+    <a id='janee' href="vragen.php?test=<?php echo $row['end_node'] ?>"> <?php echo $row['answer'] ?> </a>
     <?php
   }
 
@@ -146,3 +86,10 @@ if ($result->rowCount() > 0) {
 $nodes = array();
 
 ?>
+
+
+
+
+
+
+
