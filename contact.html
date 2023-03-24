@@ -1,5 +1,3 @@
-<?php include 'C:/xampp/htdocs/ALA/connection.php'; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,46 +48,6 @@
       </article>
     </nav>
   </header>
+  
 </body>
 </html>
-
-<style><?php include 'C:/xampp/htdocs/ALA/CSS/vragenphp.css'; ?></style>
-
-<?php
-
-$test = $_GET['test'];
-
-$query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '$test'";
-
-
-$result = $conn->query($query);
-
-if ($result->rowCount() > 0) {
-  // output data of each row
-  while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-    
-
-    echo "<div id='vraag'>" . $row["question"].  "</div><br>";
-    ?> 
-
-
-    <a id='janee' href="vragen.php?test=<?php echo $row['end_node'] ?>"> <?php echo $row['answer'] ?> </a>
-    <?php
-  }
-
-} else {
-  echo "0 results";
-}
-
-// db vragen ophalen
-
-$nodes = array();
-
-?>
-
-
-
-
-
-
-

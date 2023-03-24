@@ -1,6 +1,8 @@
 <?php include 'C:/xampp/htdocs/ALA/connection.php'; 
 
+session_start();
 if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
+  
     $username = $_POST['gebruikersnaam'];
     $password = $_POST['wachtwoord'];
 
@@ -10,20 +12,18 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
     $stmt->execute();
     $user = $stmt->fetch();
 
-   
-    if ($user) {
+    if ($stmt->rowCount() > 0) {
      
-      session_start();
       $_SESSION["username"] = $user['username'];
-
+      $_SESSION['rights'] = $user['admin'];
      
       header("Location: index.php?test=1");
       exit;
   } else {
 
-    $error = "<p id='ongeldig'>Ongeldige gebruikersnaam en/of wachtwoord.</p>";
+    // $error = "ongeldig'>Ongeldige gebruikersnaam en/of wachtwoord.";
 
-    header("Location: inlog.html");
+    header("Location: inlog.php");
       exit;
 
       // echo "<p id='ongeldig'>Ongeldige gebruikersnaam en/of wachtwoord.</p>";
@@ -34,21 +34,21 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
 // }
 }
 
-try {
-  $stmt = $conn->prepare("INSERT INTO gebruikers (username, passwords) VALUES (:username, :passwords)");
-  $stmt->bindParam(':username', $username);
-  $stmt->bindParam(':passwords', $password);
+// try {
+//   $stmt = $conn->prepare("INSERT INTO gebruikers (username, passwords) VALUES (:username, :passwords)");
+//   $stmt->bindParam(':username', $username);
+//   $stmt->bindParam(':passwords', $password);
 
-  $username = "admin";
-  $password = "admin";
-  $stmt->execute();
+//   $username = "admin";
+//   $password = "admin";
+//   $stmt->execute();
 
-} catch(PDOException $e) {
+// } catch(PDOException $e) {
   
-  if ($e->getCode() != 23000) {
-      throw $e;
-  }
-}
+//   if ($e->getCode() != 23000) {
+//       throw $e;
+//   }
+// }
 
 ?>
 
@@ -69,8 +69,10 @@ try {
       <img id='logo' src="img/Logo_rijksoverheid.svg.png">
       <li> <a class="navi" href="index.php?test=1">Home</a></li>
       <li> <a class="navi" href="vragen.php?test=1">Vragen</a></li>
-      <li> <a class="navi" href="#contact">Contact</a></li>
-      <li> <a class="navi" href="#edit">Edit</a></li>
+      <li> <a class="navi" href="contact.html">Contact</a></li>
+      <?php if(isset($_SESSION['rights']) && $_SESSION['rights'] == 1){ ?>
+      <li> <a class="navi" href="edit.php">Edit</a></li>
+      <?php } ?>
       <button class='bx bx-user' class="open-button" id="myBtn" onclick="openForm()"></button>
 
 

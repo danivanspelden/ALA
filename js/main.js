@@ -31,3 +31,37 @@ function openForm() {
       modal.style.display = "none";
     }
   }
+
+
+  // Inlog
+
+  // Controleer of de gebruiker is ingelogd en haal de gebruikersnaam op
+  const isUserLoggedIn = true;
+  const username = getUsername(); // fictieve functie om de gebruikersnaam op te halen
+
+  // Controleer of de gebruikersnaam "admin" is en laat de knop zien als dat zo is
+  if (isUserLoggedIn && username === "admin") {
+    showEditButton();
+  }
+
+  function showEditButton() {
+    const editLink = document.getElementById("edit-link"); // haal het element met de ID "edit-link" op
+    const contentId = getContentId(); // haal het ID van de inhoud op die moet worden bewerkt
+    const currentUser = getCurrentUser(); // haal de huidige gebruikersnaam op
+  
+    // Controleer of de huidige gebruiker de juiste rechten heeft om de knop te zien
+    if (currentUser === "admin") {
+      // Stel de href-link in op de juiste bewerkings-URL met het ID van de inhoud
+      editLink.href = `edit.php?id=${contentId}`; // verander "edit.php" door de juiste bewerkings-URL van je applicatie
+      editLink.style.display = "block"; // laat de link zien
+    } else {
+      editLink.style.display = "none"; // verberg de link als de huidige gebruiker geen admin is
+    }
+
+    // Controleer of de huidige gebruiker de juiste rechten heeft om de knop te zien
+    if (currentUser === "Noach") {
+      // Stel de href-link in op de juiste bewerkings-URL met het ID van de inhoud
+      editLink.href = `edit.php?id=${contentId}`; // verander "edit.php" door de juiste bewerkings-URL van je applicatie
+      editLink.style.display = "none"; // laat de link zien
+    }
+  }
