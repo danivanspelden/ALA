@@ -19,36 +19,12 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
      
       header("Location: index.php?test=1");
       exit;
-  } else {
-
-    // $error = "ongeldig'>Ongeldige gebruikersnaam en/of wachtwoord.";
+      } else {
 
     header("Location: inlog.php");
       exit;
-
-      // echo "<p id='ongeldig'>Ongeldige gebruikersnaam en/of wachtwoord.</p>";
   }
-// } else {
-//     // Als de gebruikersnaam en/of het wachtwoord niet zijn ingevuld, toon dan een melding
-//     echo "Vul a.u.b. uw gebruikersnaam en wachtwoord in.";
-// }
 }
-
-// try {
-//   $stmt = $conn->prepare("INSERT INTO gebruikers (username, passwords) VALUES (:username, :passwords)");
-//   $stmt->bindParam(':username', $username);
-//   $stmt->bindParam(':passwords', $password);
-
-//   $username = "admin";
-//   $password = "admin";
-//   $stmt->execute();
-
-// } catch(PDOException $e) {
-  
-//   if ($e->getCode() != 23000) {
-//       throw $e;
-//   }
-// }
 
 ?>
 
@@ -62,9 +38,10 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
   <link rel="stylesheet" href="css/main.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <script src="js/main.js" defer></script>
+  <style><?php include 'C:/xampp/htdocs/ALA/CSS/main.css'; ?></style>
 </head>
 <body>
-<header>
+  <header>
     <nav id='navbar'>
       <img id='logo' src="img/Logo_rijksoverheid.svg.png">
       <li> <a class="navi" href="index.php?test=1">Home</a></li>
@@ -76,22 +53,23 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
       <button class='bx bx-user' class="open-button" id="myBtn" onclick="openForm()"></button>
 
       <article style="color: white; text-align:center;">
-  <?php  if (isset($_SESSION['username'])) : ?>
-    <p>
-    Welkom
-    <strong>
-        <?php echo $_SESSION['username']; ?>
-        !
-    </strong>
-    </p>  
-    <p>
-    <a href="index.php?logout='1'" style="color: red;" text-decoration="none">
-        Klik om uit te loggen
-    </a>
-    </p>
-  <?php endif ?>
-      <!-- form -->
+      <?php  if (isset($_SESSION['username'])) : ?>
+      <p>
+      Welkom
+      <strong>
+          <?php echo $_SESSION['username']; ?>
+          !
+      </strong>
+      </p>  
+      <p>
+      <a href="index.php?" style="color: red;" text-decoration="none">
+          Klik om uit te loggen
+      </a>
+      </p>
+      <?php endif ?>
+      </article>
 
+      <!-- form -->
       <article id="myModal" class="modal">
         <article class="modal-content container">
           <article class="card">
@@ -152,43 +130,6 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
 
 </body>
 </html>
-
-<style><?php include 'C:/xampp/htdocs/ALA/CSS/main+.css'; ?></style>
-
-<?php
-
-$test = $_GET['test'];
-
-$query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '$test'";
-
-
-$result = $conn->query($query);
-
-if ($result->rowCount() > 0) {
-  // output data of each row
-  while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-    
-
-    echo "<div id='vraag'>" . $row["question"].  "</div><br>";
-    ?> 
-
-
-    <a id='janee' href="vragen.php?test=<?php echo $row['end_node'] ?>"> <?php echo $row['answer'] ?> </a>
-    <?php
-  }
-
-} else {
-  echo "0 results";
-}
-
-// db vragen ophalen
-
-$nodes = array();
-
-?>
-
-
-
 
 
 
