@@ -264,14 +264,17 @@ body{
     width: fit-content;
     place-self: center;
     padding: 5px;
+    position: relative;
+    left: 47vw;
+    top: 22vh;
 }
 
   #vraag{
     color: white;
     display: flex;
     justify-content: center;
-    /* position: relative; */
-    top: 30vh;
+    position: relative;
+    top: 19vh;
     z-index: -1;
   }
 
@@ -351,3 +354,38 @@ body{
   }
 
   
+  div.drop-zone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #009688;
+    box-shadow:
+      inset #1e5799 0 0 0 10px,    
+      inset #48e4d6 0 0 0 17px;    
+      width: 30vw;  
+  }
+
+    .drop-zone {
+      position: relative;
+      left: 35vw;
+      background: #1e5799;
+      height: 10vw;
+    }
+  
+  .drop-zone__prompt {
+    font-size: 18px;
+    color: white;
+  }
+  
+  .drop-zone__input {
+    display: none;
+  }
+
+  #klik{
+    color: black;
+    cursor: pointer;
+    text-decoration: underline;
+  }

@@ -72,3 +72,33 @@ function openForm() {
 			nav.classList.toggle('sticky', window.scrollY > 0);
 		});
 	
+    // filedrop
+
+    const dropZone = document.querySelector(".drop-zone");
+const input = dropZone.querySelector(".drop-zone__input");
+
+dropZone.addEventListener("click", (e) => {
+    input.click();
+});
+
+dropZone.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropZone.classList.add("drop-zone--over");
+});
+
+["dragleave", "dragend"].forEach((type) => {
+    dropZone.addEventListener(type, (e) => {
+        dropZone.classList.remove("drop-zone--over");
+    });
+});
+
+dropZone.addEventListener("drop", (e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+        input.files = e.dataTransfer.files;
+        console.log(input.files);
+    }
+
+    dropZone.classList.remove("drop-zone--over");
+});

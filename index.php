@@ -97,7 +97,17 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
     </nav>
   </header>
 
-  <main>
+    <main>
+
+	<div class="drop-zone">
+		<span class="drop-zone__prompt">Sleep hier je bestanden of <strong id="klik">klik</strong> om te uploaden</span>
+		<input type="file" multiple="multiple" class="drop-zone__input">
+	</div>
+
+      </main>
+
+      <br>
+      <br>
   
 <?php
 
