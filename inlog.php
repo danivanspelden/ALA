@@ -22,7 +22,7 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
       exit;
   } else {
 
-    die(var_dump($user));
+      die(var_dump($user));
     // $error = "ongeldig'>Ongeldige gebruikersnaam en/of wachtwoord.";
 
     header("Location: inlog.php");
@@ -104,7 +104,7 @@ try {
               <input type="password" required="required" name="wachtwoord">
               <span>Password</span>
             </article>
-            <p id="verkeerd">Vekeerde inloggevenss</p>
+            <p id="verkeerd">Vekeerde inlogegevens</p>
             
             <button class="enter" type="submit">Login</button>
 

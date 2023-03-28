@@ -1,4 +1,8 @@
+
+
 <?php include 'C:/xampp/htdocs/ALA/connection.php'; 
+
+
 
 session_start();
 if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
@@ -62,6 +66,7 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
   <link rel="stylesheet" href="css/main.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <script src="js/main.js" defer></script>
+  <style><?php include 'C:/xampp/htdocs/ALA/CSS/main.css'; ?></style>
 </head>
 <body>
   <header>
@@ -75,9 +80,23 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
       <?php } ?>
       <button class='bx bx-user' class="open-button" id="myBtn" onclick="openForm()"></button>
 
-
+      <article style="color: white; text-align:center;">
+  <?php  if (isset($_SESSION['username'])) : ?>
+    <p>
+    Welkom
+    <strong>
+        <?php echo $_SESSION['username']; ?>
+        !
+    </strong>
+    </p>  
+    <p>
+    <a href="index.php?" style="color: red;" text-decoration="none">
+        Klik om uit te loggen
+    </a>
+    </p>
+  <?php endif ?>
+  </article>
       <!-- form -->
-
       <article id="myModal" class="modal">
         <article class="modal-content container">
           <article class="card">
@@ -104,13 +123,12 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
       </article>
     </nav>
   </header>
+
+  <main>
   
-</body>
-</html>
-
-<style><?php include 'C:/xampp/htdocs/ALA/CSS/vragenphp.css'; ?></style>
-
 <?php
+
+
 
 if (!isset($_GET['test'])) {
   $test = 1;
@@ -127,18 +145,21 @@ $query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE no
 $result = $conn->query($query);
 
 if ($result->rowCount() > 0) {
+  $flag = false;
   // output data of each row
   while($row = $result->fetch(PDO::FETCH_ASSOC)) {
     
-
-    echo "<div id='vraag'>" . $row["question"].  "</div><br>";
+  if(!$flag){
+      echo "<div id='vraag'>" . $row['question'].  "</div><br>";
+      $flag = true;
+  }
     ?> 
 
 
-<a id='janee' href="index.php?test=<?php echo $row['end_node'] ?>"> <?php echo $row['answer'] ?> </a>
+<a class='janee' href="index.php?test=<?php echo $row['end_node'] ?>"> <?php echo $row['answer']; ?> </a>
     <?php
   }
-
+  $flag = false;
 } else {
   echo "0 results";
 }
@@ -148,3 +169,41 @@ if ($result->rowCount() > 0) {
 $nodes = array();
 
 ?>
+</main>
+
+  <footer id="footer">
+    <section id="footerContainer">
+      <article id="leftFooter">
+        <p>De Rijksoverheid. Voor Nederland</p>
+      </article>
+      <article id="rightFooter">
+        <article id="footerService">
+          <p class="footerTitle">Service</p>
+          <a href="https://www.rijksoverheid.nl/contact">Contact</a>
+          <a href="https://www.rijksoverheid.nl/abonneren">Abonneren</a>
+          <a href="https://www.rijksoverheid.nl/rss">RSS</a>
+          <a href="https://www.rijksoverheid.nl/vacatures">Vacatures</a>
+          <a href="https://www.rijksoverheid.nl/sitemap">Sitemap</a>
+          <a href="https://www.rijksoverheid.nl/help">Help</a>
+          <a href="https://www.rijksoverheid.nl/archief">Archief</a>
+        </article>
+        <article id="footerOver">
+          <p class="footerTitle">Over deze site</p>
+          <a href="https://www.rijksoverheid.nl/over-rijksoverheid-nl">Over Rijksoverheid.nl</a>
+          <a href="https://www.rijksoverheid.nl/wetten-en-regelingen">Wetten en regelingen</a>
+          <a href="https://www.rijksoverheid.nl/copyright">Copyright</a>
+          <a href="https://www.rijksoverheid.nl/privacy">Privacy</a>
+          <a href="https://www.rijksoverheid.nl/cookies">Cookies</a>
+          <a href="https://www.rijksoverheid.nl/toegankelijkheid">Toegankelijkheid</a>
+          <a href="https://www.rijksoverheid.nl/opendata">Open data</a>
+          <a href="https://www.rijksoverheid.nl/kwetsbaarheid-melden">Kwetsbaarheid melden</a>
+        </article>
+      </article>
+    </section>
+  </footer>
+
+
+</body>
+</html>
+
+

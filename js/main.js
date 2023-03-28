@@ -37,7 +37,8 @@ function openForm() {
 
   // Controleer of de gebruiker is ingelogd en haal de gebruikersnaam op
   const isUserLoggedIn = true;
-  const username = getUsername(); // fictieve functie om de gebruikersnaam op te halen
+  let username;
+  // const username = getUsername(); // fictieve functie om de gebruikersnaam op te halen
 
   // Controleer of de gebruikersnaam "admin" is en laat de knop zien als dat zo is
   if (isUserLoggedIn && username === "admin") {
@@ -65,3 +66,9 @@ function openForm() {
       editLink.style.display = "none"; // laat de link zien
     }
   }
+
+		window.addEventListener('scroll', function() {
+			var nav = document.querySelector('nav');
+			nav.classList.toggle('sticky', window.scrollY > 0);
+		});
+	

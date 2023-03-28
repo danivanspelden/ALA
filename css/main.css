@@ -1,6 +1,7 @@
 body{
     background: #1A1E23;
-    overflow: hidden;
+    /* overflow: hidden; */
+    height: 300vh;
   }
   
   *{
@@ -10,7 +11,6 @@ body{
   }
   
   nav{
-      width: 100vw;
       position: sticky;
       top: 3vh;
       padding: 5px  0 5px 0;
@@ -19,7 +19,7 @@ body{
   #logo{
       height: 100px;
       width: 50px;
-    margin-right:80vh;
+      margin-right:80vh;
     
   }
   
@@ -99,7 +99,7 @@ body{
   .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     left: 0;
     top: 0;
     width: 100%;
@@ -235,3 +235,119 @@ body{
     top: 30vh;
     z-index: -1;
   }
+
+  #welkom{
+    color: white;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 30vh;
+  }
+
+  
+  #vragen{
+    justify-content: center;
+    display: flex;
+  }
+
+  main{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .janee{
+    color: white;
+    text-decoration: none;
+    width: fit-content;
+    place-self: center;
+    padding: 5px;
+}
+
+  #vraag{
+    color: white;
+    display: flex;
+    justify-content: center;
+    /* position: relative; */
+    top: 30vh;
+    z-index: -1;
+  }
+
+  footer {
+    padding: 1vw 0;
+    width: 100%;
+    background-color: #01689b;
+    box-shadow:  -23px -23px 30px #0a0c0e,
+                  23px 23px 30px #2a3038;
+    color: white;
+    position: relative;
+    top: 300vh;
+  }
+  
+  #footerContainer {
+    margin: auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  #leftFooter {
+    font-size: 1.5vw;
+    grid-column-start: 1;
+  }
+  
+  #leftFooter p {
+    font-family: rijksoverheidserif-italic;
+  }
+  
+  #rightFooter .footerTitle {
+    font-size: 1.25vw;
+    font-weight: rijksoverheidsansheading-bold;
+  }
+  
+  #rightFooter {
+    grid-column-start: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  #rightFooter a {
+    font-family: rijksoverheidserif-regular;
+    margin: 1vw 0;
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 1vw;
+  }
+  
+  #rightFooter a:hover {
+    text-decoration: underline;
+  }
+  
+  #rightFooter a::before {
+    content: '> ';
+    font-weight: bold;
+  }
+  
+  #rightFooter a::before:hover {
+    text-decoration: none;
+  }
+  
+  @font-face {
+    font-family: rijksoverheidserif-italic;
+    src: url('fonts/rijksoverheidserif-italic.ttf');
+  }
+  
+  @font-face {
+    font-family: rijksoverheidsansheading-bold;
+    src: url('fonts/rijksoverheidsansheading-bold.ttf');
+  }
+  
+  @font-face {
+    font-family: rijksoverheidserif-regular;
+    src: url('fonts/rijksoverheidsanstext-regular.ttf');
+  }
+
+  
