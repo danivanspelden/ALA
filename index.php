@@ -1,8 +1,4 @@
-
-
 <?php include 'C:/xampp/htdocs/ALA/connection.php'; 
-
-
 
 session_start();
 if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
@@ -23,36 +19,12 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
      
       header("Location: index.php?test=1");
       exit;
-  } else {
-
-    // $error = "ongeldig'>Ongeldige gebruikersnaam en/of wachtwoord.";
+      } else {
 
     header("Location: inlog.php");
       exit;
-
-      // echo "<p id='ongeldig'>Ongeldige gebruikersnaam en/of wachtwoord.</p>";
   }
-// } else {
-//     // Als de gebruikersnaam en/of het wachtwoord niet zijn ingevuld, toon dan een melding
-//     echo "Vul a.u.b. uw gebruikersnaam en wachtwoord in.";
-// }
 }
-
-// try {
-//   $stmt = $conn->prepare("INSERT INTO gebruikers (username, passwords) VALUES (:username, :passwords)");
-//   $stmt->bindParam(':username', $username);
-//   $stmt->bindParam(':passwords', $password);
-
-//   $username = "admin";
-//   $password = "admin";
-//   $stmt->execute();
-
-// } catch(PDOException $e) {
-  
-//   if ($e->getCode() != 23000) {
-//       throw $e;
-//   }
-// }
 
 ?>
 
@@ -81,21 +53,22 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
       <button class='bx bx-user' class="open-button" id="myBtn" onclick="openForm()"></button>
 
       <article style="color: white; text-align:center;">
-  <?php  if (isset($_SESSION['username'])) : ?>
-    <p>
-    Welkom
-    <strong>
-        <?php echo $_SESSION['username']; ?>
-        !
-    </strong>
-    </p>  
-    <p>
-    <a href="index.php?" style="color: red;" text-decoration="none">
-        Klik om uit te loggen
-    </a>
-    </p>
-  <?php endif ?>
-  </article>
+      <?php  if (isset($_SESSION['username'])) : ?>
+      <p>
+      Welkom
+      <strong>
+          <?php echo $_SESSION['username']; ?>
+          !
+      </strong>
+      </p>  
+      <p>
+      <a href="index.php?" style="color: red;" text-decoration="none">
+          Klik om uit te loggen
+      </a>
+      </p>
+      <?php endif ?>
+      </article>
+
       <!-- form -->
       <article id="myModal" class="modal">
         <article class="modal-content container">
@@ -128,45 +101,39 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
   
 <?php
 
+    if (!isset($_GET['test'])) {
+      $test = 1;
+      $query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '$test'";
+    } else {
+      $test = $_GET['test'];
+      $query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '$test'";
+    }
 
+    $query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '$test'";
 
-if (!isset($_GET['test'])) {
-  $test = 1;
-  $query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '$test'";
-} else {
-  $test = $_GET['test'];
-  $query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '$test'";
-}
+    $result = $conn->query($query);
 
-$query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '$test'";
-
-// $node_1 = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '1'"
-
-$result = $conn->query($query);
-
-if ($result->rowCount() > 0) {
-  $flag = false;
-  // output data of each row
-  while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    if ($result->rowCount() > 0) {
+      $flag = false;
     
-  if(!$flag){
-      echo "<div id='vraag'>" . $row['question'].  "</div><br>";
-      $flag = true;
-  }
-    ?> 
+      while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        
+      if(!$flag){
+          echo "<div id='vraag'>" . $row['question'].  "</div><br>";
+          $flag = true;
+      }
+        ?> 
 
 
-<a class='janee' href="index.php?test=<?php echo $row['end_node'] ?>"> <?php echo $row['answer']; ?> </a>
-    <?php
-  }
-  $flag = false;
-} else {
-  echo "0 results";
-}
+    <a class='janee' href="index.php?test=<?php echo $row['end_node'] ?>"> <?php echo $row['answer']; ?> </a>
+        <?php
+      }
+      $flag = false;
+    } else {
+      echo "0 results";
+    }
 
-// db vragen ophalen
-
-$nodes = array();
+    $nodes = array();
 
 ?>
 </main>
@@ -201,8 +168,6 @@ $nodes = array();
       </article>
     </section>
   </footer>
-
-
 </body>
 </html>
 
