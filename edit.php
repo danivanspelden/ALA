@@ -99,6 +99,50 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
     </nav>
   </header>
 
+  <main>
+
+  <form class="form" method="post" action="edit.php">
+    <label for="vraag">Vraag:</label>
+    <input type="text" id="vraag" name="vraag">
+    <input type="submit" value="Verzenden">
+  </form>
+
+  <?php
+
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "ala";
+
+  try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  //   echo "Connected successfully";
+  } catch(PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+
+    // Haal de vraag uit het formulier
+    $vraag = $_POST['vraag'];
+
+    // Voeg de vraag toe aan de database
+    $query = "INSERT INTO question (vraag) VALUES (:vraag)";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(':vraag', $vraag);
+    $stmt->execute();
+
+    // Sluit de databaseverbinding
+    $db = null;
+
+    // Stuur de gebruiker terug naar de pagina waar het formulier staat
+    header("Location: edit.php");
+    exit();
+  } catch(PDOException $e) {
+    echo "Fout: " . $e->getMessage();
+  }
+?>
+      </main>
+
   <footer id="footer">
     <section id="footerContainer">
       <article id="leftFooter">

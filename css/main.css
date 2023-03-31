@@ -3,6 +3,7 @@ body{
     /* overflow: hidden; */
     height: 100vh;
   }
+
   
   *{
       padding: 0;
@@ -422,6 +423,20 @@ body{
     cursor: pointer;
     text-decoration: underline;
   }
+
+  .form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  /* input#vraag.form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  } */
 
 @media only screen and (max-width: 760px) {
   body {

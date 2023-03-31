@@ -45,8 +45,8 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
     <nav id='navbar'>
       <img id='logo' src="img/Logo_rijksoverheid.svg.png">
       <li> <a class="navi" href="index.php?test=1">Home</a></li>
-      <li> <a class="navi" href="vragen.php?test=1">Vragen</a></li>
-      <li> <a class="navi" href="contact.html">Contact</a></li>
+      <li> <a class="navi" href="vragen.php">Vragen</a></li>
+      <li> <a class="navi" href="#">Contact</a></li>
       <?php if(isset($_SESSION['rights']) && $_SESSION['rights'] == 1){ ?>
       <li> <a class="navi" href="edit.php">Edit</a></li>
       <?php } ?>
@@ -98,19 +98,19 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
   </header>
 
     <main>
-
     <h1 id="scrollBenee">Scroll naar beneden</h1>
     <img id="imgAI" src="img/shutterstock_725383498.png">
+      </section>
 
-	<div class="drop-zone">
-		<span class="drop-zone__prompt">Sleep hier je bestanden of <strong id="klik">klik</strong> om te uploaden</span>
-		<input type="file" multiple="multiple" class="drop-zone__input">
-	</div>
+      <section id="dropenvraag">
 
-      </main>
-
+    <div class="drop-zone">
+      <span class="drop-zone__prompt">Sleep hier je bestanden of <strong id="klik">klik</strong> om te uploaden</span>
+      <input type="file" multiple="multiple" class="drop-zone__input">
+    </div>
       <br>
       <br>
+      
   
 <?php
 
@@ -143,12 +143,15 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
       }
       $flag = false;
     } else {
-      echo "0 results";
+      echo "Verwijder het bestand";
     }
+    
 
     $nodes = array();
 
 ?>
+</section>
+
 </main>
 
   <footer id="footer">
