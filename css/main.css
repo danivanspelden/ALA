@@ -302,6 +302,7 @@ body{
     color: white;
     position: relative;
     top: 100vh;
+    z-index: -1;
   }
   
   #footerContainer {
