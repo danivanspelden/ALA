@@ -422,3 +422,49 @@ body{
     cursor: pointer;
     text-decoration: underline;
   }
+
+@media only screen and (max-width: 760px) {
+  body {
+    height: 100%;
+  }
+  
+  #logo{
+    margin-right: 10%;
+  }
+
+  li{
+    font-size: 16px;
+  }
+  
+  #navbar {
+    column-gap: 4%;
+    padding: 5px 0 5px 0;
+  }
+
+  #profiel {
+    width: 35px;
+  }
+
+  #buttonprofile {
+    width: 40px;
+  }
+
+  .bx {
+    font-size: 18px;
+    height: 40px;
+    width: 40px;
+  }
+
+  .modal-content {
+    margin: 5%;
+    padding: 20px;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .card {
+    min-height: 280px;
+    width: 250px;
+    gap: 25px;
+  }
+}
