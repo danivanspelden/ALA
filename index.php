@@ -38,7 +38,7 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
   <link rel="stylesheet" href="css/main.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <script src="js/main.js" defer></script>
-  <style><?php include 'C:/xampp/htdocs/ALA/CSS/main.css'; ?></style>
+  <style><?php include 'C:/xampp/htdocs/ALA/CSS/main.css'; ?> </style>
 </head>
 <body>
   <header>
@@ -98,6 +98,9 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
   </header>
 
     <main>
+
+    <h1 id="scrollBenee">Scroll naar beneden</h1>
+    <img id="imgAI" src="img/shutterstock_725383498.png">
 
 	<div class="drop-zone">
 		<span class="drop-zone__prompt">Sleep hier je bestanden of <strong id="klik">klik</strong> om te uploaden</span>

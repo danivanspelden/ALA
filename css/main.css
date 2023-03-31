@@ -1,7 +1,7 @@
 body{
     background: #1A1E23;
     /* overflow: hidden; */
-    height: 300vh;
+    height: 100vh;
   }
   
   *{
@@ -99,7 +99,7 @@ body{
   .modal {
     display: none;
     position: fixed;
-    z-index: 10;
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
@@ -266,7 +266,9 @@ body{
     padding: 5px;
     position: relative;
     left: 47vw;
-    top: 22vh;
+    top: 70vh;
+    z-index: auto;
+    overflow: hidden;
 }
 
   #vraag{
@@ -274,7 +276,7 @@ body{
     display: flex;
     justify-content: center;
     position: relative;
-    top: 19vh;
+    top: 70vh;
     z-index: -1;
   }
 
@@ -286,7 +288,7 @@ body{
                   23px 23px 30px #2a3038;
     color: white;
     position: relative;
-    top: 300vh;
+    top: 100vh;
   }
   
   #footerContainer {
@@ -353,8 +355,24 @@ body{
     src: url('fonts/rijksoverheidsanstext-regular.ttf');
   }
 
+  #scrollBenee{
+    color: white;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  #imgAI{
+    width: 30vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
   
   div.drop-zone {
+    position: relative;
+    top: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -366,6 +384,7 @@ body{
       inset #1e5799 0 0 0 10px,    
       inset #48e4d6 0 0 0 17px;    
       width: 30vw;  
+      z-index: 1;
   }
 
     .drop-zone {

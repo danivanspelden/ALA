@@ -68,6 +68,10 @@ try {
 </head>
 
 <style>
+body{
+  height: 50vh;
+}
+
 #verkeerd{
     color: red;
     
