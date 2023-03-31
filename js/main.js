@@ -35,35 +35,33 @@ function openForm() {
 
   // Inlog
 
-  // Controleer of de gebruiker is ingelogd en haal de gebruikersnaam op
+ 
   const isUserLoggedIn = true;
   let username;
-  // const username = getUsername(); // fictieve functie om de gebruikersnaam op te halen
 
-  // Controleer of de gebruikersnaam "admin" is en laat de knop zien als dat zo is
   if (isUserLoggedIn && username === "admin") {
     showEditButton();
   }
 
   function showEditButton() {
-    const editLink = document.getElementById("edit-link"); // haal het element met de ID "edit-link" op
-    const contentId = getContentId(); // haal het ID van de inhoud op die moet worden bewerkt
-    const currentUser = getCurrentUser(); // haal de huidige gebruikersnaam op
+    const editLink = document.getElementById("edit-link");
+    const contentId = getContentId(); 
+    const currentUser = getCurrentUser();
   
-    // Controleer of de huidige gebruiker de juiste rechten heeft om de knop te zien
+   
     if (currentUser === "admin") {
-      // Stel de href-link in op de juiste bewerkings-URL met het ID van de inhoud
-      editLink.href = `edit.php?id=${contentId}`; // verander "edit.php" door de juiste bewerkings-URL van je applicatie
-      editLink.style.display = "block"; // laat de link zien
+ 
+      editLink.href = `edit.php?id=${contentId}`; 
+      editLink.style.display = "block";
     } else {
-      editLink.style.display = "none"; // verberg de link als de huidige gebruiker geen admin is
+      editLink.style.display = "none"; 
     }
 
-    // Controleer of de huidige gebruiker de juiste rechten heeft om de knop te zien
+    
     if (currentUser === "Noach") {
-      // Stel de href-link in op de juiste bewerkings-URL met het ID van de inhoud
-      editLink.href = `edit.php?id=${contentId}`; // verander "edit.php" door de juiste bewerkings-URL van je applicatie
-      editLink.style.display = "none"; // laat de link zien
+     
+      editLink.href = `edit.php?id=${contentId}`; 
+      editLink.style.display = "none"; 
     }
   }
 
@@ -102,3 +100,22 @@ dropZone.addEventListener("drop", (e) => {
 
     dropZone.classList.remove("drop-zone--over");
 });
+
+
+// sticky navbar
+window.onscroll = function() {myFunction()};
+
+
+var navbar = document.getElementById("navbar");
+
+
+var sticky = navbar.offsetTop;
+
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}

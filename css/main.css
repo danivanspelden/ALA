@@ -12,8 +12,21 @@ body{
   
   nav{
       position: sticky;
+      overflow: hidden;
       top: 3vh;
       padding: 5px  0 5px 0;
+  }
+
+   
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  
+  .sticky + .content {
+    padding-top: 60px;
   }
   
   #logo{
