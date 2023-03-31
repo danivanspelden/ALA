@@ -280,7 +280,7 @@ body{
     position: relative;
     left: 47vw;
     top: 70vh;
-    z-index: auto;
+    z-index: -1;
     overflow: hidden;
 }
 
@@ -397,7 +397,7 @@ body{
       inset #1e5799 0 0 0 10px,    
       inset #48e4d6 0 0 0 17px;    
       width: 30vw;  
-      z-index: 1;
+      z-index: -1;
   }
 
     .drop-zone {
