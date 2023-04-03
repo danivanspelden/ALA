@@ -39,7 +39,7 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
   <title>Rijksoverheid</title>
   <link rel="stylesheet" href="css/main.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <script src="js/main.js" defer></script>
+  <script src="js/edit.js" defer></script>
   <style><?php include 'C:/xampp/htdocs/ALA/CSS/main.css'; ?></style>
 </head>
 <body>
@@ -99,48 +99,20 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
     </nav>
   </header>
 
-  <main>
-
-  <form class="form" method="post" action="edit.php">
-    <label for="vraag">Vraag:</label>
-    <input type="text" id="vraag" name="vraag">
-    <input type="submit" value="Verzenden">
-  </form>
-
-  <?php
-
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "ala";
-
-  try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //   echo "Connected successfully";
-  } catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-
-    // Haal de vraag uit het formulier
-    $vraag = $_POST['vraag'];
-
-    // Voeg de vraag toe aan de database
-    $query = "INSERT INTO question (vraag) VALUES (:vraag)";
-    $stmt = $db->prepare($query);
-    $stmt->bindParam(':vraag', $vraag);
-    $stmt->execute();
-
-    // Sluit de databaseverbinding
-    $db = null;
-
-    // Stuur de gebruiker terug naar de pagina waar het formulier staat
-    header("Location: edit.php");
-    exit();
-  } catch(PDOException $e) {
-    echo "Fout: " . $e->getMessage();
-  }
-?>
+ <main id="vraagedit">
+  <section class="zoek">
+        <section id="vraag1" class="vraag1">
+            <article class="text">
+                <input class="vraag1text" id="vraag1text" type="text" placeholder="Voer uw vraag in.">
+            </article>
+            <article class="buttons">
+                <button id="plusButton" class="plusButton"><img class="plus" src="img/plus.png" ></button>
+                <button id="minusButton" class="minusButton"><img class="minus" src="img/minus.png" ></button>
+                <article class="lijn"></article>
+                <button id="gearButton" class="gearButton"><img class="gear"  src="img/setting.png"></button>
+            </article>
+        </section>
+    </section>  
       </main>
 
   <footer id="footer">

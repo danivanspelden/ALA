@@ -97,6 +97,8 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
     </nav>
   </header>
 
+  
+
   <footer id="footer">
     <section id="footerContainer">
       <article id="leftFooter">

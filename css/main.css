@@ -23,11 +23,13 @@ body{
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 1;
   }
 
   
   .sticky + .content {
     padding-top: 60px;
+    z-index: 1;
   }
   
   #logo{
@@ -42,6 +44,7 @@ body{
       color: #ffffff;
       font-size: 21px;
       text-decoration: none;
+      z-index: 1;
   }
   
   #navbar{
@@ -53,6 +56,7 @@ body{
       background: #1A1E23;
       box-shadow:  23px 23px 30px #0a0c0e,
                -23px -23px 30px #2a3038;
+               z-index: 1;
   }
   
   .navi{
@@ -61,6 +65,7 @@ body{
       opacity: 0.80;
       display: inline-block;
       position: relative;
+      z-index: 1;
   }
   
   .navi:hover{
@@ -430,6 +435,109 @@ body{
     justify-content: center;
     color: white;
   }
+
+  /* vragenhref */
+
+  #vraagedit{
+    z-index: -1;
+    
+  }
+
+  .vraag1text{
+    width: 20vw;
+    color: #707070;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;  
+    font-size: large;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.vraag1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: #C8C8C830 solid 1px;
+    padding: 0.8vh 0.8vw 0.8vh 1.6vw;
+    width: 28vw;
+    background-color: #2E353D;
+    border-radius: 2em;
+    
+}
+.gear{
+    height: 4.2vh;
+}
+.plus{
+    height: 3.5vh;
+}
+.minus{
+    height: 3.5vh;
+}
+.buttons{
+    display: flex;
+    align-items: center;
+}
+.lijn{
+    width: 1px;
+    height: 5.4vh;
+    margin-right: 0.5vw;
+    border-radius: 2em;
+    background-color: #70707022;
+}
+.zoek{
+    margin-top: 10vh;
+    display: flex;
+    justify-content: center;
+}
+.gearButton{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+    display: flex;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+.plusButton{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0 0.6vw 0 0.3vw;
+    display: flex;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+.minusButton{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0 0.8vw 0 0.2vw;
+    display: flex;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+#vraag1 {
+    transition: width 0.5s ease-out;
+  }
+#plusButton,
+#minusButton {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+#vraag1text {
+    transition: width 0.5s ease-out;
+}
+#gearButton {
+    transition: transform 0.6s ease-out;
+}
+
 
   /* input#vraag.form{
     display: flex;

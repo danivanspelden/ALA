@@ -73,7 +73,7 @@ function openForm() {
     // filedrop
 
     const dropZone = document.querySelector(".drop-zone");
-const input = dropZone.querySelector(".drop-zone__input");
+    const input = dropZone.querySelector(".drop-zone__input");
 
 dropZone.addEventListener("click", (e) => {
     input.click();
@@ -131,3 +131,5 @@ function myFunction() {
         });
       });
   });
+
+  
