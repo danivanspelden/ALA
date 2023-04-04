@@ -1,4 +1,4 @@
-<?php include 'C:/xampp/htdocs/ALA/connection.php'; 
+<?php include './connection.php'; 
 
 session_start();
 if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
@@ -99,21 +99,41 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
     </nav>
   </header>
 
- <main id="vraagedit">
+ <form method="post" id="vraagedit">
   <section class="zoek">
         <section id="vraag1" class="vraag1">
             <article class="text">
-                <input class="vraag1text" id="vraag1text" type="text" placeholder="Voer uw vraag in.">
+                <input class="vraag1text" id="vraag1text" type="text" name="text1" placeholder="Voer uw vraag in.">
             </article>
             <article class="buttons">
-                <button id="plusButton" class="plusButton"><img class="plus" src="img/plus.png" ></button>
+                <button type="submit" name="plus" id="plusButton" class="plusButton"><img class="plus" src="img/plus.png" ></button>
                 <button id="minusButton" class="minusButton"><img class="minus" src="img/minus.png" ></button>
                 <article class="lijn"></article>
-                <button id="gearButton" class="gearButton"><img class="gear"  src="img/setting.png"></button>
+                <button type="button" id="gearButton" class="gearButton"><img class="gear"  src="img/setting.png" disabled></button>
             </article>
         </section>
     </section>  
-      </main>
+      </form>
+
+      <?php
+      if(isset($_POST['plus']) && ($_POST['text1'] != "" || !empty($_POST['text1']))){
+        try {
+          $vraag = $_POST['text1'];
+          
+          $sql = "INSERT INTO nodes (question)
+          VALUES ('$vraag')";
+          
+        unset($_POST);
+          $conn->exec($sql);
+          $_POST['plus'] = null;
+          echo "Vraag toegevoegd!";
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+      }
+
+      ?>
 
   <footer id="footer">
     <section id="footerContainer">
@@ -144,6 +164,11 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
         </article>
       </article>
     </section>
+    <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
   </footer>
 </body>
 </html>
