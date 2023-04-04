@@ -38,7 +38,17 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
   <link rel="stylesheet" href="css/main.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <script src="js/main.js" defer></script>
-  <style><?php include 'C:/xampp/htdocs/ALA/CSS/main.css'; ?> </style>
+  <style>
+  <?php include 'C:/xampp/htdocs/ALA/CSS/main.css'; ?>
+  .weggooien{
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      top: 60vh;
+    } 
+  </style>
 </head>
 <body>
   <header>
@@ -143,7 +153,7 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
       }
       $flag = false;
     } else {
-      echo "Verwijder het bestand";
+      echo "<p class='weggooien'>Bestand weggooien.</p>";
     }
     
 

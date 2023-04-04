@@ -39,8 +39,18 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
   <title>Rijksoverheid</title>
   <link rel="stylesheet" href="css/main.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <script src="js/edit.js" defer></script>
+  
   <style><?php include 'C:/xampp/htdocs/ALA/CSS/main.css'; ?></style>
+  <style>
+  .echo{
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      top: 5vh;
+  }
+</style>
 </head>
 <body>
   <header>
@@ -99,22 +109,22 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
     </nav>
   </header>
 
- <form method="post" id="vraagedit">
+  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="vraagedit">
   <section class="zoek">
         <section id="vraag1" class="vraag1">
             <article class="text">
-                <input class="vraag1text" id="vraag1text" type="text" name="text1" placeholder="Voer uw vraag in.">
+                <input class="vraag1text" id="vraag1text" type="text" name="text1" placeholder="Voer uw vraag in.">                  
             </article>
             <article class="buttons">
                 <button type="submit" name="plus" id="plusButton" class="plusButton"><img class="plus" src="img/plus.png" ></button>
-                <button id="minusButton" class="minusButton"><img class="minus" src="img/minus.png" ></button>
+                <button id="minusButton" class="minusButton" type="submit" name="min"> 
+                <img class="minus" src="img/minus.png" ></button>
                 <article class="lijn"></article>
-                <button type="button" id="gearButton" class="gearButton"><img class="gear"  src="img/setting.png" disabled></button>
+                <button type="button" id="gearButton" class="gearButton"><img class="gear"  src="img/setting.png"></button>
             </article>
         </section>
     </section>  
       </form>
-
       <?php
       if(isset($_POST['plus']) && ($_POST['text1'] != "" || !empty($_POST['text1']))){
         try {
@@ -126,12 +136,23 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
         unset($_POST);
           $conn->exec($sql);
           $_POST['plus'] = null;
-          echo "Vraag toegevoegd!";
+          echo "<p class='echo'>Vraag toegevoegd!</p>";
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
         }
         $conn = null;
       }
+
+    //   if(isset($_POST['min']) && !empty($_POST['vragen'])) {
+    //     try {
+    //         $vraag_id = $_POST['vragen'];
+    //         $sql = "DELETE FROM nodes WHERE id = $vraag_id";
+    //         $conn->exec($sql);
+    //         echo "<p class='echo'>Vraag verwijderd!</p>";
+    //     } catch(PDOException $e) {
+    //         echo $sql . "<br>" . $e->getMessage();
+    //     }
+    // }
 
       ?>
 
@@ -168,7 +189,7 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
     if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
     }
-</script>
+</script><script src="js/edit.js" defer></script>
   </footer>
 </body>
 </html>
