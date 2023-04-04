@@ -226,3 +226,108 @@ body{
     color: black;
     text-decoration: none;
   }
+
+  #treebody{
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    color: white;
+    margin: 0;
+    padding: 0;
+
+}
+.tree{
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+.tree ul{
+    padding: 20px;
+    position: relative;
+    transition: .5%;
+}
+.tree li{
+    display: inline-table;
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 10px;
+    transition: .5%;
+}
+.tree li:before, .tree li:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top: 1px solid #ccc;
+    width: 51%;
+    height: 10px;
+}
+.tree li:after{
+    right: auto;
+    left: 50%;
+    border-left: 1px solid #ccc;
+}
+.tree li:only-child:after, .tree li:only-child:before{
+    display: none;
+}
+.tree li:only-child{
+    padding: 0;
+}
+.tree li:first-child:before, .tree li:last-child:after{
+    border: 0 none;
+}
+.tree li:last-child:before{
+    border-right: 1px solid #ccc;
+    border-radius: 0px 5px 0px 0px;
+}
+.tree li:first-child:after{
+    border-radius: 0px 5px 0px 0px;
+}
+.tree ul ul:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-left: 1px solid #ccc;
+    width: 0;
+    height: 20px;
+}
+.tree section{
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: inline-grid;
+    border-radius: 10px;
+    transition: .5%;
+}
+.tree section input{
+    height: 1.5rem;
+    background-color: #000000;
+    border-radius: 10px;
+    border: solid 1px white;
+    margin-top: 3px;
+    color: white;
+    padding-left: 5px;
+
+}
+.tree button{
+    height: 1.5rem;
+    margin-top: 5px;
+    background-color: black;
+    color: white;
+    border: solid white 1px;
+    border-radius: 5px;
+    height: 1.5rem;
+    width: 70px;
+}
+.tree button:hover{
+    background-color: #656565;
+}
+.tree button:active{
+    background-color: #01002c;
+
+}
+.tree section input:focus{
+    background-color: white;
+    color: black;
+}
