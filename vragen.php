@@ -1,4 +1,4 @@
-<?php include 'C:/xampp/htdocs/ALA/connection.php'; 
+<?php include './connection.php'; 
 
 session_start();
 if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
@@ -46,7 +46,7 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
       <img id='logo' src="img/Logo_rijksoverheid.svg.png">
       <li> <a class="navi" href="index.php?test=1">Home</a></li>
       <li> <a class="navi" href="vragen.php?test=1">Vragen</a></li>
-      <li> <a class="navi" href="#">Contact</a></li>
+      <li> <a class="navi" href="contact.php">Contact</a></li>
       <?php if(isset($_SESSION['rights']) && $_SESSION['rights'] == 1){ ?>
       <li> <a class="navi" href="edit.php">Edit</a></li>
       <?php } ?>
