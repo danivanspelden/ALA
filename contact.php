@@ -1,32 +1,30 @@
 <?php include './connection.php'; 
 
-session_start();
-if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
-  
-    $username = $_POST['gebruikersnaam'];
-    $password = $_POST['wachtwoord'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $voornaam = $_POST['voornaam'];
+    $tussenvoegsel = $_POST['tussenvoegsel'];
+    $achternaam = $_POST['achternaam'];
+    $email = $_POST['email'];
+    $vraagstellen = $_POST['vraag'];
 
-    $stmt = $conn->prepare("SELECT * FROM gebruikers WHERE username = :username AND passwords = :passwords");
-    $stmt->bindParam(':username', $username);
-    $stmt->bindParam(':passwords', $password);
-    $stmt->execute();
-    $user = $stmt->fetch();
+    if (!empty($voornaam) && !empty($achternaam) && !empty($email) && !empty($vraagstellen)) {
+        $stmt = $conn->prepare("INSERT INTO vraag (voornaam, tussenvoegsel, achternaam, email, vraag) VALUES (:voornaam, :tussenvoegsel, :achternaam, :email, :vraagstellen)");
+        $stmt->bindParam(":voornaam", $voornaam);
+        $stmt->bindParam(":tussenvoegsel", $tussenvoegsel);
+        $stmt->bindParam(":achternaam", $achternaam);
+        $stmt->bindParam(":email", $email);
+        $stmt->bindParam(":vraagstellen", $vraagstellen);
+        $stmt->execute();
 
-    if ($stmt->rowCount() > 0) {
-     
-      $_SESSION["username"] = $user['username'];
-      $_SESSION['rights'] = $user['admin'];
-     
-      header("Location: index.php?test=1");
-      exit;
-      } else {
-
-    header("Location: inlog.php");
-      exit;
-  }
+        echo 'Vraag verzonden!';
+        header("Location: contact.php");
+        
+    } else {
+        echo "<p id='verplicht'>Alle velden behalve tussenvoegsel zijn verplicht.</p>";
+    }
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,14 +38,6 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
   <script src="js/main.js" defer></script>
   <style>
   <?php include 'C:/xampp/htdocs/ALA/CSS/main.css'; ?>
-  .weggooien{
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      top: 60vh;
-    } 
   </style>
 </head>
 <body>
@@ -106,65 +96,27 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
       </article>
     </nav>
   </header>
+<body>
+    <id class="h1">Heeft u nog vragen? Vul dit formulier in.</id>
+<form id="form" method="POST">
+    <label for="voornaam">Voornaam:</label>
+    <input type="text" name="voornaam" id="voornaam"> <br>
 
-    <main>
-    <h1 id="scrollBenee">Scroll naar beneden</h1>
-    <img id="imgAI" src="img/shutterstock_725383498.png">
-      </section>
+    <label for="tussenvoegsel">Tussenvoegsel:</label>
+    <input type="text" name="tussenvoegsel" id="tussenvoegsel"> <br>
 
-      <section id="dropenvraag">
+    <label for="achternaam">Achternaam:</label>
+    <input type="text" name="achternaam" id="achternaam"> <br>
 
-    <div class="drop-zone">
-      <span class="drop-zone__prompt">Sleep hier je bestanden of <strong id="klik">klik</strong> om te uploaden</span>
-      <input type="file" multiple="multiple" class="drop-zone__input">
-    </div>
-      <br>
-      <br>
-      
-  
-<?php
+    <label for="email">E-mail:</label>
+    <input type="email" name="email" id="email"> <br>
 
-    if (!isset($_GET['test'])) {
-      $test = 1;
-      $query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '$test'";
-    } else {
-      $test = $_GET['test'];
-      $query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '$test'";
-    }
+    <label for="vraagstellen">Vraag:</label>
+    <input type="text" name="vraagstellen" id="vraagstellen"> <br>
 
-    $query = "SELECT * FROM nodes JOIN edges ON nodes.id = edges.start_node WHERE nodes.id = '$test'";
-
-    $result = $conn->query($query);
-
-    if ($result->rowCount() > 0) {
-      $flag = false;
-    
-      while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        
-      if(!$flag){
-          echo "<div id='vraag'>" . $row['question'].  "</div><br>";
-          $flag = true;
-      }
-        ?> 
-
-
-    <a class='janee' href="index.php?test=<?php echo $row['end_node'] ?>"> <?php echo $row['answer']; ?> </a>
-        <?php
-      }
-      $flag = false;
-    } else {
-      echo "<p class='weggooien'>Bestand weggooien.</p>";
-    }
-    
-
-    $nodes = array();
-
-?>
-</section>
-
-</main>
-
-  <footer id="footer">
+    <button type="submit">Versturen</button>
+</form>
+<footer id="footer">
     <section id="footerContainer">
       <article id="leftFooter">
         <p>De Rijksoverheid. Voor Nederland</p>
@@ -196,5 +148,3 @@ if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
   </footer>
 </body>
 </html>
-
-

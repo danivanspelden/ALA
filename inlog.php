@@ -1,4 +1,4 @@
-<?php include 'C:/xampp/htdocs/ALA/connection.php'; 
+<?php include './connection.php'; 
 
 if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
     $username = $_POST['gebruikersnaam'];
@@ -84,7 +84,7 @@ body{
       <img id='logo' src="img/Logo_rijksoverheid.svg.png">
       <li> <a class="navi" href="index.php?test=1">Home</a></li>
       <li> <a class="navi" href="vragen.php?test=1">Vragen</a></li>
-      <li> <a class="navi" href="contact.html">Contact</a></li>
+      <li> <a class="navi" href="contact.php">Contact</a></li>
       <li> <a class="navi" href="edit.php">Edit</a></li>
       <button class='bx bx-user' class="open-button" id="myBtn" onclick="openForm()"></button>
 
