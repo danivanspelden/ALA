@@ -1,11 +1,37 @@
 <?php include './connection.php'; 
 
+session_start();
+if(isset($_POST['gebruikersnaam']) && isset($_POST['wachtwoord'])) {
+  
+    $username = $_POST['gebruikersnaam'];
+    $password = $_POST['wachtwoord'];
+
+    $stmt = $conn->prepare("SELECT * FROM gebruikers WHERE username = :username AND passwords = :passwords");
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':passwords', $password);
+    $stmt->execute();
+    $user = $stmt->fetch();
+
+    if ($stmt->rowCount() > 0) {
+     
+      $_SESSION["username"] = $user['username'];
+      $_SESSION['rights'] = $user['admin'];
+     
+      header("Location: index.php?test=1");
+      exit;
+      } else {
+
+    header("Location: inlog.php");
+      exit;
+  }
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $voornaam = $_POST['voornaam'];
     $tussenvoegsel = $_POST['tussenvoegsel'];
     $achternaam = $_POST['achternaam'];
     $email = $_POST['email'];
-    $vraagstellen = $_POST['vraag'];
+    $vraagstellen = $_POST['vraagstellen'];
 
     if (!empty($voornaam) && !empty($achternaam) && !empty($email) && !empty($vraagstellen)) {
         $stmt = $conn->prepare("INSERT INTO vraag (voornaam, tussenvoegsel, achternaam, email, vraag) VALUES (:voornaam, :tussenvoegsel, :achternaam, :email, :vraagstellen)");
@@ -114,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label for="vraagstellen">Vraag:</label>
     <input type="text" name="vraagstellen" id="vraagstellen"> <br>
 
-    <button type="submit">Versturen</button>
+    <button id="versturen-contact" type="submit">Versturen</button>
 </form>
 <footer id="footer">
     <section id="footerContainer">
